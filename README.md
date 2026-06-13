@@ -28,7 +28,7 @@ A from-scratch, interactive AP World History: Modern lesson engine with Socratic
 ## This repository
 The official ANDERSONLOGICai marketing website — a single, self-contained, responsive HTML page with an animated logo-trace load sequence built on the brand system.
 
-**Live site:** https://janderson-stack.github.io/andersonlogicai-website/
+**Live site:** https://janderson-stack.github.io/AndersonLogic/
 
 ---
 
