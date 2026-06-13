@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ANDERSONLOGICai — Logic. Applied.</title>
+  <meta name="description" content="ANDERSONLOGICai — AI consulting for education and strategic social media design. Logic. Applied. By Jeff Anderson, a 24-year classroom educator and AP World History teacher." />
+  <meta name="theme-color" content="#1A1C1D" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="ANDERSONLOGICai — Logic. Applied." />
+  <meta property="og:description" content="AI consulting for education and strategic social media design for organizations ready to grow." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://janderson-stack.github.io/andersonlogicai-website/" />
+
+  <!-- Fonts: Manrope (display) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;1,500&display=swap" rel="stylesheet" />
+
+  <!-- Sets the animation-ready state synchronously to avoid any flash, and only
+       when the visitor has not requested reduced motion. With no JS or with
+       reduced motion, the page renders the static logo (final state). -->
+  <script>
+    (function () {
+      try {
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reduce) document.documentElement.classList.add('anim-ready');
+      } catch (e) {}
+    })();
+  </script>
+
+  <style>
+    :root {
+      --steel: #1A1C1D;       /* Blackened Steel */
+      --gold: #C9A46A;        /* Antique Gold    */
+      --gold-bright: #E2C189; /* Bright Gold     */
+      --paper: #FFFDF7;       /* Clean Paper     */
+      --iron: #5A5F5C;        /* Aged Iron       */
+      --blue: #3F6DF6;        /* Electric Blue   */
+
+      --steel-2: #212425;
+      --steel-3: #2A2D2E;
+      --maxw: 1140px;
+      --ease: cubic-bezier(.22, .61, .36, 1);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--steel);
+      color: var(--paper);
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .display { font-family: 'Manrope', system-ui, sans-serif; }
+
+    a { color: inherit; }
+
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: 100%;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ---------- Accessibility helpers ---------- */
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -60px;
+      background: var(--gold);
+      color: var(--steel);
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      z-index: 1000;
+      transition: top .2s var(--ease);
+    }
+    .skip-link:focus { top: 16px; }
+
+    a:focus-visible,
+    button:focus-visible,
+    .btn:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 3px;
+      border-radius: 10px;
+    }
+
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0);
+      white-space: nowrap; border: 0;
+    }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: .01em;
+      text-decoration: none;
+      padding: 14px 26px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform .2s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease), color .2s var(--ease);
+      will-change: transform;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+      color: var(--steel);
+      box-shadow: 0 6px 22px rgba(201, 164, 106, .28);
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(201, 164, 106, .42);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--paper);
+      border-color: rgba(201, 164, 106, .55);
+    }
+    .btn-ghost:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold);
+      background: rgba(201, 164, 106, .08);
+    }
+    .btn-dark {
+      background: var(--steel);
+      color: var(--paper);
+    }
+    .btn-dark:hover { transform: translateY(-2px); }
+    .btn .arrow { transition: transform .2s var(--ease); }
+    .btn:hover .arrow { transform: translateX(4px); }
+
+    /* ---------- Nav ---------- */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(26, 28, 29, .72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 164, 106, .16);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      height: 68px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--paper);
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      letter-spacing: .005em;
+      font-size: 19px;
+    }
+    .brand .nav-mark { width: 34px; height: 34px; flex: none; }
+    .brand b { color: var(--paper); }
+    .brand .ai { color: var(--gold); font-weight: 700; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      list-style: none;
+      margin: 0; padding: 0;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(255, 253, 247, .82);
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: .01em;
+      position: relative;
+      padding: 6px 2px;
+      transition: color .2s var(--ease);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -2px;
+      width: 0; height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-bright));
+      transition: width .25s var(--ease);
+    }
+    .nav-links a:hover { color: var(--paper); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta { flex: none; }
+    .nav-cta .btn { padding: 11px 20px; font-size: 15px; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 80px;
+      overflow: hidden;
+      background:
+        radial-gradient(120% 90% at 50% -10%, #232627 0%, var(--steel) 55%);
+    }
+    #particles {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* Logo + animation stage */
+    .logo-stage {
+      width: min(280px, 64vw);
+      margin: 0 auto 26px;
+    }
+    .logo-mark { width: 100%; height: auto; display: block; overflow: visible; }
+
+    .bloom { opacity: 0; }
+    .light { opacity: 0; }
+    .trace-line { stroke-dasharray: 262; stroke-dashoffset: 0; }
+    .logo-mark { opacity: 1; }
+
+    /* Pre-animation start state (only when JS + motion allowed) */
+    .anim-ready .logo-mark { opacity: 0; }
+    .anim-ready .trace-line { stroke-dashoffset: 262; }
+
+    /* Running animations */
+    .play .logo-mark   { animation: fadeIn .6s var(--ease) forwards; }
+    .play .bloom       { animation: bloom 2.2s ease-in-out .5s forwards; }
+    .play .trace-line  { animation: draw 1.4s linear .6s forwards; }
+    .play .light-a     { animation: lightOn 1.4s linear .6s forwards; }
+    .play .light-dot   { animation: lightOn .9s linear 2s forwards; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    @keyframes draw   { to { stroke-dashoffset: 0; } }
+    @keyframes bloom  { 0% { opacity: 0; } 25% { opacity: 1; } 72% { opacity: 1; } 100% { opacity: 0; } }
+    @keyframes lightOn { 0% { opacity: 0; } 10% { opacity: 1; } 88% { opacity: 1; } 100% { opacity: 0; } }
+
+    .slogan {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .005em;
+      line-height: .98;
+      margin: 0 0 18px;
+      font-size: clamp(3rem, 11vw, 6.6rem);
+    }
+    .slogan .applied {
+      font-style: italic;
+      background: linear-gradient(100deg, var(--gold) 0%, var(--gold-bright) 55%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .eyebrow {
+      font-family: 'Manrope', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .42em;
+      font-size: clamp(.62rem, 1.7vw, .82rem);
+      font-weight: 600;
+      color: var(--gold);
+      margin: 0 0 26px;
+      padding-left: .42em;
+    }
+    .hero p.lede {
+      max-width: 620px;
+      margin: 0 auto 34px;
+      color: rgba(255, 253, 247, .8);
+      font-size: clamp(1rem, 2.4vw, 1.18rem);
+    }
+
+    /* ---------- Section scaffolding ---------- */
+    section { position: relative; }
+    .section { padding: 110px 0; }
+    .section-dark { background: var(--steel); }
+    .section-darker {
+      background: linear-gradient(180deg, var(--steel) 0%, #16191a 100%);
+    }
+    .section-light { background: var(--paper); color: var(--steel); }
+
+    .section-head { max-width: 760px; margin-bottom: 56px; }
+    .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+    .kicker {
+      font-family: 'Manrope', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .26em;
+      font-size: .76rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin: 0 0 16px;
+    }
+    .section-light .kicker { color: #9a7d44; }
+    .section h2 {
+      font-size: clamp(1.9rem, 4.6vw, 3rem);
+      line-height: 1.08;
+      font-weight: 800;
+      margin: 0 0 18px;
+      letter-spacing: -.01em;
+    }
+    .section-head p {
+      font-size: 1.12rem;
+      color: rgba(255, 253, 247, .76);
+      margin: 0;
+    }
+    .section-light .section-head p { color: var(--iron); }
+
+    /* ---------- Framework steps ---------- */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-bottom: 64px;
+    }
+    .step {
+      background: var(--steel-2);
+      border: 1px solid rgba(201, 164, 106, .16);
+      border-radius: 18px;
+      padding: 30px 26px;
+      position: relative;
+      transition: transform .25s var(--ease), border-color .25s var(--ease);
+    }
+    .step:hover { transform: translateY(-4px); border-color: rgba(201, 164, 106, .4); }
+    .step .num {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: .82rem;
+      letter-spacing: .18em;
+      color: var(--gold);
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+    .step h3 { font-size: 1.24rem; margin: 0 0 10px; line-height: 1.2; }
+    .step p { margin: 0; color: rgba(255, 253, 247, .72); font-size: .98rem; }
+
+    /* ---------- Proof band ---------- */
+    .proof {
+      position: relative;
+      border-radius: 22px;
+      padding: 44px;
+      margin-bottom: 64px;
+      background:
+        radial-gradient(120% 160% at 0% 0%, rgba(201, 164, 106, .16), transparent 55%),
+        var(--steel-3);
+      border: 1px solid rgba(201, 164, 106, .34);
+      display: grid;
+      grid-template-columns: 1.4fr auto;
+      gap: 28px;
+      align-items: center;
+    }
+    .proof .proof-tag {
+      font-family: 'Manrope', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      font-size: .74rem;
+      font-weight: 700;
+      color: var(--gold-bright);
+      margin: 0 0 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .proof .proof-tag::before {
+      content: '';
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gold-bright);
+      box-shadow: 0 0 12px var(--gold-bright);
+    }
+    .proof h3 { font-size: 1.7rem; margin: 0 0 10px; line-height: 1.15; }
+    .proof h3 .be { color: var(--gold); }
+    .proof p { margin: 0; color: rgba(255, 253, 247, .8); max-width: 56ch; }
+    .proof .proof-cta { white-space: nowrap; }
+
+    /* ---------- Card grids ---------- */
+    .cards {
+      display: grid;
+      gap: 22px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .card {
+      background: var(--steel-2);
+      border: 1px solid rgba(255, 253, 247, .08);
+      border-radius: 18px;
+      padding: 30px 26px;
+      transition: transform .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease);
+    }
+    .card:hover { transform: translateY(-4px); border-color: rgba(201, 164, 106, .4); }
+    .card .ic {
+      width: 46px; height: 46px;
+      border-radius: 12px;
+      display: grid; place-items: center;
+      background: rgba(201, 164, 106, .14);
+      color: var(--gold-bright);
+      margin-bottom: 18px;
+    }
+    .card h3 { font-size: 1.18rem; margin: 0 0 9px; line-height: 1.25; }
+    .card p { margin: 0; color: rgba(255, 253, 247, .72); font-size: .97rem; }
+
+    /* Light section cards */
+    .section-light .card {
+      background: #fff;
+      border: 1px solid rgba(26, 28, 29, .08);
+      box-shadow: 0 10px 30px rgba(26, 28, 29, .05);
+    }
+    .section-light .card:hover { border-color: rgba(201, 164, 106, .6); }
+    .section-light .card h3 { color: var(--steel); }
+    .section-light .card p { color: var(--iron); }
+    .section-light .card .ic { background: rgba(201, 164, 106, .18); color: #9a7d44; }
+    .platforms {
+      list-style: none;
+      margin: 16px 0 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .platforms li {
+      font-family: 'Manrope', sans-serif;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(201, 164, 106, .14);
+      color: #8a6f3c;
+    }
+
+    /* ---------- About ---------- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 54px;
+      align-items: center;
+    }
+    .about-portrait {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      border-radius: 22px;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(120% 120% at 30% 20%, rgba(201, 164, 106, .22), transparent 60%),
+        var(--steel-2);
+      border: 1px solid rgba(201, 164, 106, .26);
+      overflow: hidden;
+    }
+    .about-portrait .mono {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: clamp(4rem, 16vw, 9rem);
+      color: var(--paper);
+      line-height: 1;
+    }
+    .about-portrait .mono span { color: var(--gold); }
+    .about h2 { font-size: clamp(1.9rem, 4.4vw, 2.8rem); }
+    .about p { color: rgba(255, 253, 247, .82); }
+    .about p + p { margin-top: 16px; }
+    .chips {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 26px 0 0;
+      padding: 0;
+    }
+    .chips li {
+      font-family: 'Manrope', sans-serif;
+      font-size: .84rem;
+      font-weight: 600;
+      padding: 8px 15px;
+      border-radius: 999px;
+      border: 1px solid rgba(201, 164, 106, .34);
+      color: var(--gold-bright);
+      background: rgba(201, 164, 106, .07);
+    }
+
+    /* ---------- Contact ---------- */
+    .contact {
+      text-align: center;
+      background:
+        radial-gradient(100% 120% at 50% 0%, #232627, var(--steel) 60%);
+    }
+    .contact h2 {
+      font-size: clamp(2.1rem, 6vw, 3.8rem);
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: -.005em;
+      line-height: 1;
+      margin: 0 auto 22px;
+      max-width: 16ch;
+    }
+    .contact h2 .applied {
+      font-style: italic;
+      background: linear-gradient(100deg, var(--gold), var(--gold-bright) 60%, var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .contact p {
+      max-width: 600px;
+      margin: 0 auto 34px;
+      color: rgba(255, 253, 247, .8);
+      font-size: 1.12rem;
+    }
+
+    /* ---------- Footer ---------- */
+    .footer {
+      background: #141617;
+      border-top: 1px solid rgba(201, 164, 106, .16);
+      padding: 48px 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+    .footer .brand { font-size: 17px; }
+    .footer .foot-tag {
+      font-family: 'Manrope', sans-serif;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+    .footer .copy {
+      color: rgba(255, 253, 247, .55);
+      font-size: .88rem;
+      text-align: right;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .steps { grid-template-columns: 1fr; }
+      .proof { grid-template-columns: 1fr; text-align: left; }
+      .proof .proof-cta { justify-self: start; }
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .about-portrait { max-width: 320px; }
+    }
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .section { padding: 84px 0; }
+      .proof { padding: 30px; }
+      .footer-inner { justify-content: center; text-align: center; }
+      .footer .copy { text-align: center; }
+    }
+
+    /* ---------- Reduced motion: static logo, no movement ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .logo-mark { opacity: 1 !important; }
+      .trace-line { stroke-dashoffset: 0 !important; }
+      .bloom, .light { display: none !important; }
+      #particles { display: none !important; }
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============================ NAV ============================ -->
+  <header class="nav">
+    <nav class="container nav-inner" aria-label="Primary">
+      <a class="brand" href="#top" aria-label="ANDERSONLOGICai home">
+        <!-- Compact logomark (mirrors the hero mark) -->
+        <svg class="nav-mark" viewBox="0 0 240 200" aria-hidden="true" focusable="false">
+          <path d="M60 160 L120 50 L180 160" fill="none" stroke="#FFFDF7" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="86" y1="118" x2="154" y2="118" stroke="#FFFDF7" stroke-width="11" stroke-linecap="round"/>
+          <circle cx="120" cy="118" r="10" fill="#C9A46A"/>
+        </svg>
+        <span><b>ANDERSONLOGIC</b><span class="ai">ai</span></span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#consulting">AI Consulting</a></li>
+        <li><a href="#social">Social Design</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <a class="btn btn-gold" href="#contact">Start a project</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- ============================ HERO ============================ -->
+    <section class="hero" id="top">
+      <canvas id="particles" aria-hidden="true"></canvas>
+
+      <div class="container hero-inner">
+        <!-- =====================================================================
+             LOGOMARK + SIGNATURE LOAD ANIMATION
+             ---------------------------------------------------------------------
+             This is a vector rendering of the ANDERSONLOGICai "A" mark, used so
+             the load animation can trace the letterform's outline and circle the
+             gold center dot precisely.
+
+             TO USE THE OFFICIAL BASE64 PNG LOGO (dark-mode version, with black
+             lettering remapped to Clean Paper #FFFDF7 and gold elements left
+             untouched): place the file in /assets, then replace the <svg ...>
+             ... </svg> block below with:
+
+                 <img class="logo-mark" alt="ANDERSONLOGICai"
+                      src="data:image/png;base64,PASTE_BASE64_HERE" />
+
+             (The trace/circle animation is tied to the SVG paths, so keep the SVG
+             if you want the signature animation.)
+             ===================================================================== -->
+        <div class="logo-stage">
+          <svg class="logo-mark" viewBox="0 0 240 200" role="img"
+               aria-label="ANDERSONLOGICai logomark — a gold and paper letter A with a gold center dot">
+            <defs>
+              <linearGradient id="goldGrad" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0" stop-color="#C9A46A"/>
+                <stop offset="1" stop-color="#E2C189"/>
+              </linearGradient>
+              <radialGradient id="bloomGrad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"  stop-color="#E2C189" stop-opacity="0.55"/>
+                <stop offset="55%" stop-color="#C9A46A" stop-opacity="0.18"/>
+                <stop offset="100%" stop-color="#C9A46A" stop-opacity="0"/>
+              </radialGradient>
+              <filter id="lightGlow" x="-300%" y="-300%" width="700%" height="700%">
+                <feGaussianBlur stdDeviation="3.2" result="b"/>
+                <feMerge>
+                  <feMergeNode in="b"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+
+            <!-- Radial glow that blooms behind the mark only during the trace -->
+            <ellipse class="bloom" cx="120" cy="108" rx="104" ry="98" fill="url(#bloomGrad)"/>
+
+            <!-- Static letterform, Clean Paper so it reads on dark -->
+            <path class="a-base" d="M60 160 L120 50 L180 160" fill="none"
+                  stroke="#FFFDF7" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+            <line class="a-bar" x1="86" y1="118" x2="154" y2="118"
+                  stroke="#FFFDF7" stroke-width="11" stroke-linecap="round"/>
+
+            <!-- Gold gradient line left behind by the tracing light -->
+            <path class="trace-line" d="M60 160 L120 50 L180 160" fill="none"
+                  stroke="url(#goldGrad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+            <!-- Gold center dot (untouched brand element) -->
+            <circle class="a-dot" cx="120" cy="118" r="10" fill="url(#goldGrad)"/>
+
+            <!-- Travelling point of light #1: traces the A outline -->
+            <circle class="light light-a" r="4.2" fill="#FFF6E0" filter="url(#lightGlow)">
+              <animateMotion id="motionA" begin="indefinite" dur="1.4s" fill="freeze" calcMode="linear"
+                             path="M60 160 L120 50 L180 160"/>
+            </circle>
+
+            <!-- Travelling point of light #2: circles the gold dot along its edge -->
+            <circle class="light light-dot" r="3.6" fill="#FFF6E0" filter="url(#lightGlow)">
+              <animateMotion id="motionDot" begin="motionA.end" dur="0.9s" fill="freeze" calcMode="linear"
+                             path="M120 104 a14 14 0 1 0 0.01 0 Z"/>
+            </circle>
+          </svg>
+        </div>
+
+        <p class="eyebrow">AI Consulting &nbsp;·&nbsp; Social Media Design</p>
+
+        <h1 class="slogan">Logic.<br><span class="applied">Applied.</span></h1>
+
+        <p class="eyebrow" style="margin-bottom:22px;">Smarter Solutions. Stronger Outcomes.</p>
+
+        <p class="lede">
+          ANDERSONLOGICai pairs classroom-tested AI strategy with brand-driven design —
+          turning ambitious ideas into systems that work for schools, districts, and
+          organizations ready to grow.
+        </p>
+
+        <a class="btn btn-gold" href="#consulting">
+          Explore solutions <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================== AI CONSULTING ===================== -->
+    <section class="section section-darker" id="consulting" aria-labelledby="consulting-h">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">AI Consulting · Education-first</p>
+          <h2 id="consulting-h">AI in education, done right — built by a teacher, proven with students.</h2>
+          <p>
+            Schools and districts move fastest when pedagogy leads and tools follow.
+            ANDERSONLOGICai brings a working, classroom-grounded method to AI adoption —
+            so teacher judgment is amplified, learning is protected, and integrity is
+            built in from the start.
+          </p>
+        </div>
+
+        <!-- Assess / Design / Implement -->
+        <div class="steps">
+          <article class="step">
+            <span class="num">01 · Assess</span>
+            <h3>Map where AI actually fits.</h3>
+            <p>
+              Audit real classroom workflows, risks, and goals to pinpoint where AI adds
+              genuine value — and where it has no business being.
+            </p>
+          </article>
+          <article class="step">
+            <span class="num">02 · Design</span>
+            <h3>Build workflows that protect learning.</h3>
+            <p>
+              Translate findings into concrete routines and guardrails: students coached,
+              never graded, by AI, with academic integrity engineered in.
+            </p>
+          </article>
+          <article class="step">
+            <span class="num">03 · Implement</span>
+            <h3>Roll out with support that sticks.</h3>
+            <p>
+              Equip teachers through hands-on PD, pilot in real classrooms, and refine —
+              so adoption lasts well beyond launch day.
+            </p>
+          </article>
+        </div>
+
+        <!-- Proof band: BeHistorical -->
+        <div class="proof">
+          <div>
+            <p class="proof-tag">Proof, not promises</p>
+            <h3><span class="be">BeHistorical</span> — the working proof behind the practice.</h3>
+            <p>
+              An interactive AP World History lesson engine with Socratic AI coaching,
+              Canvas LMS integration, and school-endorsed guardrails. Not a demo — a tool
+              built from scratch and proven with real students.
+            </p>
+          </div>
+          <div class="proof-cta">
+            <a class="btn btn-gold" href="https://janderson-stack.github.io/ap-world-history/"
+               target="_blank" rel="noopener noreferrer">
+              Explore BeHistorical <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Service cards -->
+        <div class="cards">
+          <article class="card">
+            <div class="ic" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 2.7 3 6 3s6-2 6-3v-5"/></svg>
+            </div>
+            <h3>PD for teachers</h3>
+            <p>Practical, classroom-ready professional development that turns AI anxiety into confident, principled practice.</p>
+          </article>
+          <article class="card">
+            <div class="ic" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h12"/></svg>
+            </div>
+            <h3>Classroom AI workflow design</h3>
+            <p>Student-facing routines where AI coaches and questions — never grades — keeping learning and ownership with the learner.</p>
+          </article>
+          <article class="card">
+            <div class="ic" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <h3>District AI strategy &amp; integrity audits</h3>
+            <p>System-wide policy, rollout planning, and academic-integrity audits that scale responsibly across schools.</p>
+          </article>
+          <article class="card">
+            <div class="ic" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg>
+            </div>
+            <h3>AI strategy for organizations</h3>
+            <p>Clear, jargon-free AI roadmaps for businesses and programs — strategy before software, every time.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SOCIAL MEDIA DESIGN ===================== -->
+    <section class="section section-light" id="social" aria-labelledby="social-h">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Social Media Design</p>
+          <h2 id="social-h">Design that earns attention — and a brand that earns trust.</h2>
+          <p>
+            Consistent, intentional design turns scattered posts into a recognizable
+            brand. ANDERSONLOGICai builds social systems that look sharp, stay on-message,
+            and scale without losing their voice.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="ic" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+            </div>
+            <h3>Branded content systems</h3>
+            <p>Templates, type, and color systems that keep every post unmistakably on-brand — and make creating new content effortless.</p>
+          </article>
+          <article class="card">
+            <div class="ic" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            </div>
+            <h3>Monthly design packages</h3>
+            <p>A steady, reliable flow of ready-to-publish creative, planned around a content calendar so the feed never goes quiet.</p>
+            <ul class="platforms" aria-label="Platforms covered">
+              <li>Instagram</li>
+              <li>Facebook</li>
+              <li>X / Twitter</li>
+              <li>LinkedIn</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="ic" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 13v6H7v-7"/></svg>
+            </div>
+            <h3>Campaign &amp; launch creative</h3>
+            <p>Standout visual campaigns for launches, events, and announcements — built to cut through the feed and drive action.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT (first person) ===================== -->
+    <section class="section section-dark about" id="about" aria-labelledby="about-h">
+      <div class="container about-grid">
+        <div class="about-portrait" aria-hidden="true">
+          <span class="mono">J<span>.</span>A</span>
+        </div>
+        <div>
+          <p class="kicker">About</p>
+          <h2 id="about-h">I'm Jeff Anderson.</h2>
+          <p>
+            I've spent 24 years in the classroom, and I currently teach AP World History.
+            That experience is the whole point: I've lived the realities of teaching, so I
+            build AI and design work that respects how schools and students actually operate.
+          </p>
+          <p>
+            I built BeHistorical from scratch — an AP World History lesson engine with
+            Socratic AI coaching and real guardrails — because I wanted proof, not promises.
+            Whether the work is AI strategy or brand-driven social design, I work directly
+            with every client. No handoffs, no account managers — just me, your goals, and a
+            plan that holds up in the real world.
+          </p>
+          <ul class="chips">
+            <li>24 years in the classroom</li>
+            <li>AP World History teacher</li>
+            <li>Creator of BeHistorical</li>
+            <li>AI in education</li>
+            <li>Brand &amp; social design</li>
+            <li>Zionsville, Indiana</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section class="section contact" id="contact" aria-labelledby="contact-h">
+      <div class="container">
+        <h2 id="contact-h">Logic. <span class="applied">Applied</span> — to your next move.</h2>
+        <p>
+          Share the challenge — a single class, a brand refresh, a district-wide rollout —
+          and ANDERSONLOGICai will map a clear path from idea to a system that actually works.
+        </p>
+        <a class="btn btn-gold" href="mailto:jeffanderson7772@gmail.com">
+          Email Jeff Anderson <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a class="brand" href="#top" aria-label="ANDERSONLOGICai home">
+        <svg class="nav-mark" viewBox="0 0 240 200" aria-hidden="true" focusable="false">
+          <path d="M60 160 L120 50 L180 160" fill="none" stroke="#FFFDF7" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="86" y1="118" x2="154" y2="118" stroke="#FFFDF7" stroke-width="11" stroke-linecap="round"/>
+          <circle cx="120" cy="118" r="10" fill="#C9A46A"/>
+        </svg>
+        <span><b>ANDERSONLOGIC</b><span class="ai">ai</span></span>
+      </a>
+      <span class="foot-tag">Logic. Applied.</span>
+      <span class="copy">© 2026 Jeff Anderson — ANDERSONLOGICai<br>Zionsville, Indiana · All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var animate = root.classList.contains('anim-ready');
+
+      /* ---------- Signature load animation ---------- */
+      if (animate) {
+        window.addEventListener('load', function () {
+          // Start CSS animations (fade-in, line draw, bloom, light fades).
+          // The .play class on <html> drives the descendant selectors in CSS.
+          root.classList.add('play');
+
+          // Kick off the SMIL trace; the dot-circle motion chains off its end.
+          var motionA = document.getElementById('motionA');
+          if (motionA && typeof motionA.beginElement === 'function') {
+            // Align the light with the CSS line-draw, which starts at 0.6s.
+            setTimeout(function () {
+              try { motionA.beginElement(); } catch (e) {}
+            }, 600);
+          }
+        });
+      }
+
+      /* ---------- Subtle gold particle wave (hero background) ---------- */
+      var canvas = document.getElementById('particles');
+      if (!canvas || !animate) return;
+      var ctx = canvas.getContext('2d');
+      var hero = canvas.parentElement;
+      var particles = [];
+      var w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      function resize() {
+        w = hero.clientWidth;
+        h = hero.clientHeight;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        build();
+      }
+
+      function build() {
+        particles = [];
+        var count = Math.round(Math.min(70, Math.max(28, w / 22)));
+        for (var i = 0; i < count; i++) {
+          particles.push({
+            x: Math.random() * w,
+            baseY: Math.random() * h,
+            r: Math.random() * 1.8 + 0.6,
+            speed: Math.random() * 0.18 + 0.05,
+            amp: Math.random() * 22 + 8,
+            phase: Math.random() * Math.PI * 2,
+            freq: Math.random() * 0.0008 + 0.0003,
+            alpha: Math.random() * 0.4 + 0.12
+          });
+        }
+      }
+
+      function frame(t) {
+        ctx.clearRect(0, 0, w, h);
+        for (var i = 0; i < particles.length; i++) {
+          var p = particles[i];
+          p.x += p.speed;
+          if (p.x > w + 6) p.x = -6;
+          var y = p.baseY + Math.sin(t * p.freq + p.phase) * p.amp;
+          ctx.beginPath();
+          ctx.arc(p.x, y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(201, 164, 106, ' + p.alpha + ')';
+          ctx.fill();
+        }
+        requestAnimationFrame(frame);
+      }
+
+      var ro = window.ResizeObserver ? new ResizeObserver(resize) : null;
+      if (ro) ro.observe(hero); else window.addEventListener('resize', resize);
+      resize();
+      requestAnimationFrame(frame);
+    })();
+  </script>
+</body>
+</html>
